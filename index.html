@@ -148,6 +148,89 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-github-hexo-404-解决方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/28/github-hexo-404-解决方法/">github hexo 404 解决方法</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/28/github-hexo-404-解决方法/" class="archive-article-date">
+  	<time datetime="2019-07-27T16:00:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>刚刚搭建好的博客就遇到了404的情况</p>
+<h2 id="F-ck-you"><a href="#F-ck-you" class="headerlink" title="F*ck you!"></a>F*ck you!</h2><h4 id="问题原因："><a href="#问题原因：" class="headerlink" title="问题原因："></a>问题原因：</h4><h5 id="hexo每一次commint的时候会把原来的CNAME文件覆盖掉，导致域名不能正常解析。"><a href="#hexo每一次commint的时候会把原来的CNAME文件覆盖掉，导致域名不能正常解析。" class="headerlink" title="hexo每一次commint的时候会把原来的CNAME文件覆盖掉，导致域名不能正常解析。"></a>hexo每一次commint的时候会把原来的CNAME文件覆盖掉，导致域名不能正常解析。</h5><h4 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h4><h5 id="在hexo的public文件夹下新建一个CNAME文件并且写入域名，酱紫hexo每一次给你commint时就不会丢失CNAME文件使得域名正常解析。"><a href="#在hexo的public文件夹下新建一个CNAME文件并且写入域名，酱紫hexo每一次给你commint时就不会丢失CNAME文件使得域名正常解析。" class="headerlink" title="在hexo的public文件夹下新建一个CNAME文件并且写入域名，酱紫hexo每一次给你commint时就不会丢失CNAME文件使得域名正常解析。"></a>在hexo的public文件夹下新建一个CNAME文件并且写入域名，酱紫hexo每一次给你commint时就不会丢失CNAME文件使得域名正常解析。</h5><p>下面给出解决方案</p>
+<p>进入hexo目录执行下列代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> domain &gt; public/CNAME</span><br><span class="line">hexo g -d</span><br></pre></td></tr></table></figure>
+
+<p>之后的每一次提交都不会出现404的情况了</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">github</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/28/github-hexo-404-解决方法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-关于我的新博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -316,6 +399,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">公告</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
             
             <div class="clearfix"></div>
