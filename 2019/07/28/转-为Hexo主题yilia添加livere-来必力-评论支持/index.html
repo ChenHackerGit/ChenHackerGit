@@ -9,14 +9,14 @@
   <title>[转]为Hexo主题yilia添加livere(来必力)评论支持 | ChenHacker&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="本文来自：https://jomsou.github.io/2017/07/16/livere/ 在使用yilia主题后，想添加评论功能，然而主题自带的第三方评论对我来说都用不了，多说关了，网易云跟帖也要关了，畅言必须进行域名备案，github page使用不了。在这种情况下，我找到了livere。">
-<meta name="keywords" content="装载，hexo,livere">
+<meta name="keywords" content="转载，hexo,livere">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[转]为Hexo主题yilia添加livere(来必力)评论支持">
 <meta property="og:url" content="http://ch66.cf/2019/07/28/转-为Hexo主题yilia添加livere-来必力-评论支持/index.html">
 <meta property="og:site_name" content="ChenHacker&#39;s Blog">
 <meta property="og:description" content="本文来自：https://jomsou.github.io/2017/07/16/livere/ 在使用yilia主题后，想添加评论功能，然而主题自带的第三方评论对我来说都用不了，多说关了，网易云跟帖也要关了，畅言必须进行域名备案，github page使用不了。在这种情况下，我找到了livere。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-28T03:15:59.644Z">
+<meta property="og:updated_time" content="2019-07-29T08:31:58.933Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[转]为Hexo主题yilia添加livere(来必力)评论支持">
 <meta name="twitter:description" content="本文来自：https://jomsou.github.io/2017/07/16/livere/ 在使用yilia主题后，想添加评论功能，然而主题自带的第三方评论对我来说都用不了，多说关了，网易云跟帖也要关了，畅言必须进行域名备案，github page使用不了。在这种情况下，我找到了livere。">
@@ -193,10 +193,10 @@
 <h2 id="添加livere插件"><a href="#添加livere插件" class="headerlink" title="添加livere插件"></a>添加livere插件</h2><p>首先在 _config.yml 文件中添加如下配置：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">livere: true</span><br></pre></td></tr></table></figure>
 
-<p>然后\layout_partial\post目录下添加livere.ejs，把livere安装代码复制进去，文件内容如下，其中data-uid就是你自己的data-uid。</p>
+<p>然后\layout\_partial\post目录下添加livere.ejs，把livere安装代码复制进去，文件内容如下，其中data-uid就是你自己的data-uid。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 来必力City版安装代码 --&gt;</span><br><span class="line">&lt;div id=&quot;lv-container&quot; data-id=&quot;city&quot; data-uid=&quot;your data-uid&quot;&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">   (function(d, s) &#123;</span><br><span class="line">       var j, e = d.getElementsByTagName(s)[0];</span><br><span class="line">       if (typeof LivereTower === &apos;function&apos;) &#123; return; &#125;</span><br><span class="line">       j = d.createElement(s);</span><br><span class="line">       j.src = &apos;https://cdn-city.livere.com/js/embed.dist.js&apos;;</span><br><span class="line">       j.async = true;</span><br><span class="line">       e.parentNode.insertBefore(j, e);</span><br><span class="line">   &#125;)(document, &apos;script&apos;);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;noscript&gt;为正常使用来必力评论功能请激活JavaScript&lt;/noscript&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;!-- City版安装代码已完成 --&gt;</span><br></pre></td></tr></table></figure>
 
-<p>最后在layout_partial\article.ejs中&lt;% if (!index &amp;&amp; post.comments){ %&gt;后面添加如下代码：</p>
+<p>最后在layout\_partial\article.ejs中&lt;% if (!index &amp;&amp; post.comments){ %&gt;后面添加如下代码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (theme.livere)&#123; %&gt;</span><br><span class="line">&lt;%- partial(&apos;post/livere&apos;, &#123;</span><br><span class="line">    key: post.slug,</span><br><span class="line">    title: post.title,</span><br><span class="line">    url: config.url+url_for(post.path)</span><br><span class="line">  &#125;) %&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
 
 <p>至此，为yilia主题添加livere评论插件完成。<br>效果见下方评论栏，觉得还行的可以留言啊。</p>
@@ -234,7 +234,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">装载，hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">转载，hexo</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -307,6 +307,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/07/28/编译Linux内核笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          编译Linux内核笔记
+        
+      </div>
+    </a>
   
   
     <a href="/2019/07/28/免费端口映射推荐-www-natfrp-org/" id="article-nav-older" class="article-nav-link-wrap">
@@ -470,14 +479,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">端口映射</a>
               </li>
              
@@ -490,7 +491,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">装载，hexo</a>
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">转载，hexo</a>
               </li>
              
               <li class="article-tag-list-item">
