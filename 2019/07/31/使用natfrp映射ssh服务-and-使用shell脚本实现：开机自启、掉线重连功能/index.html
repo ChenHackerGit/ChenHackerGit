@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://ch66.cf">
   <title>使用natfrp映射ssh服务 and 使用shell脚本实现：开机自启、掉线重连功能 | ChenHacker&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="注：本机使用的环境如下： 12[ch66@ch66-pc ~]$ uname -aLinux ch66-pc 5.3.0-1-MANJARO #1 SMP Mon Jul 22 10:35:15 UTC 2019 x86_64 GNU/Linux  背景:暑假里基本都是机房和home两点一线，每个星期的星期八放假呢.有时候需要传一些文件回家，于是想出一下几个点子：  U盘大法好（不想带） 百度网盘">
+  <meta name="description" content="注：本机使用的环境如下： 12[ch66@ch66-pc ~]$ uname -aLinux ch66-pc 5.3.0-1-MANJARO #1 SMP Mon Jul 22 10:35:15 UTC 2019 x86_64 GNU/Linux  背景:暑假里基本都是机房和home两点一线，每个星期的星期八放假呢.有时候需要传一些文件回家，于是想出一下几个点子：">
 <meta name="keywords" content="端口映射,natfrp,ssh,shell,服务器，linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用natfrp映射ssh服务 and 使用shell脚本实现：开机自启、掉线重连功能">
 <meta property="og:url" content="http://ch66.cf/2019/07/31/使用natfrp映射ssh服务-and-使用shell脚本实现：开机自启、掉线重连功能/index.html">
 <meta property="og:site_name" content="ChenHacker&#39;s Blog">
-<meta property="og:description" content="注：本机使用的环境如下： 12[ch66@ch66-pc ~]$ uname -aLinux ch66-pc 5.3.0-1-MANJARO #1 SMP Mon Jul 22 10:35:15 UTC 2019 x86_64 GNU/Linux  背景:暑假里基本都是机房和home两点一线，每个星期的星期八放假呢.有时候需要传一些文件回家，于是想出一下几个点子：  U盘大法好（不想带） 百度网盘">
+<meta property="og:description" content="注：本机使用的环境如下： 12[ch66@ch66-pc ~]$ uname -aLinux ch66-pc 5.3.0-1-MANJARO #1 SMP Mon Jul 22 10:35:15 UTC 2019 x86_64 GNU/Linux  背景:暑假里基本都是机房和home两点一线，每个星期的星期八放假呢.有时候需要传一些文件回家，于是想出一下几个点子：">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-31T14:00:41.505Z">
+<meta property="og:updated_time" content="2019-07-31T14:03:27.768Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用natfrp映射ssh服务 and 使用shell脚本实现：开机自启、掉线重连功能">
-<meta name="twitter:description" content="注：本机使用的环境如下： 12[ch66@ch66-pc ~]$ uname -aLinux ch66-pc 5.3.0-1-MANJARO #1 SMP Mon Jul 22 10:35:15 UTC 2019 x86_64 GNU/Linux  背景:暑假里基本都是机房和home两点一线，每个星期的星期八放假呢.有时候需要传一些文件回家，于是想出一下几个点子：  U盘大法好（不想带） 百度网盘">
+<meta name="twitter:description" content="注：本机使用的环境如下： 12[ch66@ch66-pc ~]$ uname -aLinux ch66-pc 5.3.0-1-MANJARO #1 SMP Mon Jul 22 10:35:15 UTC 2019 x86_64 GNU/Linux  背景:暑假里基本都是机房和home两点一线，每个星期的星期八放假呢.有时候需要传一些文件回家，于是想出一下几个点子：">
   
     <link rel="alternative" href="/atom.xml" title="ChenHacker&#39;s Blog" type="application/atom+xml">
   
@@ -182,6 +182,8 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[ch66@ch66-pc ~]$ uname -a</span><br><span class="line">Linux ch66-pc 5.3.0-1-MANJARO #1 SMP Mon Jul 22 10:35:15 UTC 2019 x86_64 GNU/Linux</span><br></pre></td></tr></table></figure>
 
 <h3 id="背景"><a href="#背景" class="headerlink" title="背景:"></a>背景:</h3><p>暑假里基本都是机房和home两点一线，<del>每个星期的星期八放假呢.</del>有时候需要传一些文件回家，于是想出一下几个点子：</p>
+<a id="more"></a> 
+
 <ol>
 <li>U盘大法好（不想带）</li>
 <li>百度网盘（垃圾玩意儿你给我限速我还嫌你不安全呢）</li>
