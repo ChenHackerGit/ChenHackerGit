@@ -17,8 +17,8 @@
 <meta property="og:description" content="注：本机使用的环境如下： 12[ch66@ch66-pc ~]$ uname -aLinux ch66-pc 5.3.0-1-MANJARO #1 SMP Mon Jul 22 10:35:15 UTC 2019 x86_64 GNU/Linux  背景:暑假里基本都是机房和home两点一线，每个星期的星期八放假呢.有时候需要传一些文件回家，于是想出一下几个点子：">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://ch66.cf/images/3.png">
-<meta property="og:image" content="http://ch66.cf/image/3.png">
-<meta property="og:updated_time" content="2019-08-03T14:59:04.396Z">
+<meta property="og:image" content="http://ch66.cf/images/4.png">
+<meta property="og:updated_time" content="2019-08-03T15:05:02.734Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用natfrp映射ssh服务 and 使用shell脚本实现：开机自启、掉线重连功能">
 <meta name="twitter:description" content="注：本机使用的环境如下： 12[ch66@ch66-pc ~]$ uname -aLinux ch66-pc 5.3.0-1-MANJARO #1 SMP Mon Jul 22 10:35:15 UTC 2019 x86_64 GNU/Linux  背景:暑假里基本都是机房和home两点一线，每个星期的星期八放假呢.有时候需要传一些文件回家，于是想出一下几个点子：">
@@ -214,7 +214,7 @@
 <h3 id="3-使用filezilla工具测试sftp"><a href="#3-使用filezilla工具测试sftp" class="headerlink" title="3.使用filezilla工具测试sftp"></a>3.使用filezilla工具测试sftp</h3><p>ftp客户端多如牛毛，这里推荐一款免费好用跨平台的ftp客户端<a href="https://www.filezilla.cn" target="_blank" rel="noopener">filazilla</a></p>
 <p>中文官网: <a href="https://www.filezilla.cn" target="_blank" rel="noopener">https://www.filezilla.cn</a></p>
 <p>安装好之后打开是这个样子的：<br><img src="/images/3.png" alt><br>然后点击点击文件新建一个主机，填入域名和端口用户密码，</p>
-<h4 id="注意这里的协议要用sftp"><a href="#注意这里的协议要用sftp" class="headerlink" title="注意这里的协议要用sftp"></a>注意这里的协议要用sftp</h4><p><img src="/image/3.png" alt></p>
+<h4 id="注意这里的协议要用sftp"><a href="#注意这里的协议要用sftp" class="headerlink" title="注意这里的协议要用sftp"></a>注意这里的协议要用sftp</h4><p><img src="/images/4.png" alt></p>
 <h3 id="4-编写shell脚本让服务器用不掉线"><a href="#4-编写shell脚本让服务器用不掉线" class="headerlink" title="4.编写shell脚本让服务器用不掉线"></a>4.编写shell脚本让服务器用不掉线</h3><p>终于来到本文的重点了，由于在服务器运行的过程中总是会有一些莫名其妙的错误，比如timeout之类的，或者你想切换一个端口，这个时候natfrp的客户端就不会自动从新连接了，于是我们的文件就得在学校过夜了。</p>
 <p>所以我们得用shell脚本来维护这个进程</p>
 <h4 id="脚本维护大致分为三步："><a href="#脚本维护大致分为三步：" class="headerlink" title="脚本维护大致分为三步："></a>脚本维护大致分为三步：</h4><ol>
