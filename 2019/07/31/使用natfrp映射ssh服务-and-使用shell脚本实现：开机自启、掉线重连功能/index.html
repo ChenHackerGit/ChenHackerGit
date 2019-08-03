@@ -16,10 +16,13 @@
 <meta property="og:site_name" content="ChenHacker&#39;s Blog">
 <meta property="og:description" content="注：本机使用的环境如下： 12[ch66@ch66-pc ~]$ uname -aLinux ch66-pc 5.3.0-1-MANJARO #1 SMP Mon Jul 22 10:35:15 UTC 2019 x86_64 GNU/Linux  背景:暑假里基本都是机房和home两点一线，每个星期的星期八放假呢.有时候需要传一些文件回家，于是想出一下几个点子：">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-31T14:05:39.594Z">
+<meta property="og:image" content="http://ch66.cf/images/3.png">
+<meta property="og:image" content="http://ch66.cf/image/3.png">
+<meta property="og:updated_time" content="2019-08-03T14:59:04.396Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用natfrp映射ssh服务 and 使用shell脚本实现：开机自启、掉线重连功能">
 <meta name="twitter:description" content="注：本机使用的环境如下： 12[ch66@ch66-pc ~]$ uname -aLinux ch66-pc 5.3.0-1-MANJARO #1 SMP Mon Jul 22 10:35:15 UTC 2019 x86_64 GNU/Linux  背景:暑假里基本都是机房和home两点一线，每个星期的星期八放假呢.有时候需要传一些文件回家，于是想出一下几个点子：">
+<meta name="twitter:image" content="http://ch66.cf/images/3.png">
   
     <link rel="alternative" href="/atom.xml" title="ChenHacker&#39;s Blog" type="application/atom+xml">
   
@@ -208,7 +211,44 @@
 <h5 id="然后测试一下-1"><a href="#然后测试一下-1" class="headerlink" title="然后测试一下:"></a>然后测试一下:</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh ch66@pc.ch66.cf -p 6514</span><br></pre></td></tr></table></figure>
 
 <p>//-p 后面是指定的端口号</p>
-<h5 id="（由于今日甚是疲惫，未完待续。。。）"><a href="#（由于今日甚是疲惫，未完待续。。。）" class="headerlink" title="（由于今日甚是疲惫，未完待续。。。）"></a>（由于今日甚是疲惫，未完待续。。。）</h5>
+<h3 id="3-使用filezilla工具测试sftp"><a href="#3-使用filezilla工具测试sftp" class="headerlink" title="3.使用filezilla工具测试sftp"></a>3.使用filezilla工具测试sftp</h3><p>ftp客户端多如牛毛，这里推荐一款免费好用跨平台的ftp客户端<a href="https://www.filezilla.cn" target="_blank" rel="noopener">filazilla</a></p>
+<p>中文官网: <a href="https://www.filezilla.cn" target="_blank" rel="noopener">https://www.filezilla.cn</a></p>
+<p>安装好之后打开是这个样子的：<br><img src="/images/3.png" alt><br>然后点击点击文件新建一个主机，填入域名和端口用户密码，</p>
+<h4 id="注意这里的协议要用sftp"><a href="#注意这里的协议要用sftp" class="headerlink" title="注意这里的协议要用sftp"></a>注意这里的协议要用sftp</h4><p><img src="/image/3.png" alt></p>
+<h3 id="4-编写shell脚本让服务器用不掉线"><a href="#4-编写shell脚本让服务器用不掉线" class="headerlink" title="4.编写shell脚本让服务器用不掉线"></a>4.编写shell脚本让服务器用不掉线</h3><p>终于来到本文的重点了，由于在服务器运行的过程中总是会有一些莫名其妙的错误，比如timeout之类的，或者你想切换一个端口，这个时候natfrp的客户端就不会自动从新连接了，于是我们的文件就得在学校过夜了。</p>
+<p>所以我们得用shell脚本来维护这个进程</p>
+<h4 id="脚本维护大致分为三步："><a href="#脚本维护大致分为三步：" class="headerlink" title="脚本维护大致分为三步："></a>脚本维护大致分为三步：</h4><ol>
+<li>编写shell脚本</li>
+<li>利用nohup工具使脚本在后台运行</li>
+<li>让脚本开机启动</li>
+</ol>
+<h4 id="而脚本主要分为两个："><a href="#而脚本主要分为两个：" class="headerlink" title="而脚本主要分为两个："></a>而脚本主要分为两个：</h4><ol>
+<li>维护wifi的脚本（为什么要这个呢，因为我用的是笔记本wifi极少数时候会掉线，并且我的Linux开机不会自动连接wifi，需要我自己写脚本）</li>
+<li>维护natfrp客户段的脚本</li>
+</ol>
+<h5 id="写一个wifi维护脚本："><a href="#写一个wifi维护脚本：" class="headerlink" title="写一个wifi维护脚本："></a>写一个wifi维护脚本：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">test_connect</span></span>() &#123;</span><br><span class="line">        nc -v -z www.baidu.com 80</span><br><span class="line">        <span class="built_in">return</span> $?</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 这个函数用来测试互联网状态（使用baidu的服务器测试）</span></span><br><span class="line">wifi_name=(<span class="string">"我家的wifi名字"</span> <span class="string">"隔壁的wifi名字"</span>)</span><br><span class="line">wifi_password=(<span class="string">"我家wifi密码"</span> <span class="string">"隔壁的密码"</span>)</span><br><span class="line"><span class="comment"># 这里把隔壁的wifi添加到列表主要是防止我家的wifi出锅</span></span><br><span class="line">cnt=2</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">try_wifi</span></span>() &#123;</span><br><span class="line">        i=0</span><br><span class="line">        <span class="keyword">while</span>((<span class="variable">$i</span>&lt;cnt)) </span><br><span class="line">        <span class="keyword">do</span></span><br><span class="line">                nmcli device wifi connect <span class="variable">$&#123;wifi_name[$i]&#125;</span> password <span class="variable">$&#123;wifi_password[$i]&#125;</span></span><br><span class="line">                test_connect</span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">test</span> $? -eq 0</span><br><span class="line">                        <span class="keyword">then</span> <span class="built_in">break</span></span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line">                i=<span class="variable">$i</span>+1</span><br><span class="line">        <span class="keyword">done</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 尝试连接wifi列表里的wifi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面是主程序</span></span><br><span class="line"><span class="keyword">while</span>(<span class="literal">true</span>) </span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">        <span class="built_in">echo</span> $(date <span class="string">"+%Y-%m-%d %H:%M:%S"</span>)</span><br><span class="line">        test_connect</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">test</span> $? -eq 1</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                try_wifi</span><br><span class="line">        <span class="keyword">else</span> </span><br><span class="line">                <span class="built_in">echo</span> ok</span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">        sleep 3</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p>保存为~/sh/wifi.sh</p>
+<h4 id="再来一个主进程维护脚本："><a href="#再来一个主进程维护脚本：" class="headerlink" title="再来一个主进程维护脚本："></a>再来一个主进程维护脚本：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#/!bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">pd</span></span>() &#123;</span><br><span class="line">        nc -v -z pc.ch66.cf 6514</span><br><span class="line">        <span class="built_in">return</span> $?</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">resetservice</span></span>() &#123;</span><br><span class="line">        killall ./Sakura_frpc_linux_amd64</span><br><span class="line">        ./Sakura_frpc_linux_amd64 --su=你的用户名 --sp=你的密码 --sid=10 &amp; </span><br><span class="line">        sleep 5 </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="literal">true</span>)</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">        <span class="built_in">echo</span> $(date <span class="string">"+%Y-%m-%d %H:%M:%S"</span>)</span><br><span class="line">        pd</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">test</span> $? -eq 1</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                resetservice</span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">        sleep 2</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p>保存为~/frp/keep_run.sh</p>
+<p>以上两个脚本同学们可以自己测试一下</p>
+<h5 id="使用nohup把脚本放在后台运行（这同样适用于ssh）"><a href="#使用nohup把脚本放在后台运行（这同样适用于ssh）" class="headerlink" title="使用nohup把脚本放在后台运行（这同样适用于ssh）"></a>使用nohup把脚本放在后台运行（这同样适用于ssh）</h5><p>安装nohup工具</p>
+<p>debian:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install nohup</span><br></pre></td></tr></table></figure>
+
+<p>Arch:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S yay &amp;&amp; yay -S nohup</span><br></pre></td></tr></table></figure>
+
+<h4 id="nohup基本使用方法："><a href="#nohup基本使用方法：" class="headerlink" title="nohup基本使用方法："></a>nohup基本使用方法：</h4><p>运行名为test.sh的shell脚本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup ./test.sh &amp;</span><br></pre></td></tr></table></figure>
+
+<p>然后test.sh的输出保存在nohup.out文件里</p>
+<h3 id="最后把这两个脚本开机自启动："><a href="#最后把这两个脚本开机自启动：" class="headerlink" title="最后把这两个脚本开机自启动："></a>最后把这两个脚本开机自启动：</h3><p>在/etc/rc.local中加入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/home/ch66/sh/wifi.sh &gt; /home/ch66/sh/<span class="built_in">log</span>/wifi.log &amp;</span><br><span class="line">/home/ch66/frp/run.sh &gt; /home/ch66/frp/log.txt &amp;</span><br></pre></td></tr></table></figure>
+
+<h2 id="重启，大功告成！"><a href="#重启，大功告成！" class="headerlink" title="重启，大功告成！"></a>重启，大功告成！</h2><p>到现在我们的所有工作就已经完成了，每天早上打开电脑自动启动服务，到学校直接传文件，脚本维护永不掉线，爽！</p>
+
       
 
       
