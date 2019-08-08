@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://ch66.cf">
   <title>题解 P1565 【牛宫】 | ChenHacker&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是一名蒟蒻在考场上自己想出来的题解！和下面的大佬的思路都不一样的题解！我的解法 O(n * n * n * logn),下面那些单调栈是真的牛逼啊。 其实是我把这一题想难了，看下面的O(n * n * n * logn)的解法思路比我简单多了，我这里只是提供一个 与众不同 的解法。 我这个算法是基于暴力优化而来的 首先对于二维的子矩阵问题（比如最大子矩阵），一个常规的思路就是枚举左右区间，然后按">
+  <meta name="description" content="这是一名蒟蒻在考场上自己想出来的题解！和下面的大佬的思路都不一样的题解！我的解法 O(n * n * n * logn),下面那些单调栈是真的牛逼啊。">
 <meta name="keywords" content="题解，二分">
 <meta property="og:type" content="article">
 <meta property="og:title" content="题解 P1565 【牛宫】">
 <meta property="og:url" content="http://ch66.cf/2019/08/08/题解-P1565-【牛宫】/index.html">
 <meta property="og:site_name" content="ChenHacker&#39;s Blog">
-<meta property="og:description" content="这是一名蒟蒻在考场上自己想出来的题解！和下面的大佬的思路都不一样的题解！我的解法 O(n * n * n * logn),下面那些单调栈是真的牛逼啊。 其实是我把这一题想难了，看下面的O(n * n * n * logn)的解法思路比我简单多了，我这里只是提供一个 与众不同 的解法。 我这个算法是基于暴力优化而来的 首先对于二维的子矩阵问题（比如最大子矩阵），一个常规的思路就是枚举左右区间，然后按">
+<meta property="og:description" content="这是一名蒟蒻在考场上自己想出来的题解！和下面的大佬的思路都不一样的题解！我的解法 O(n * n * n * logn),下面那些单调栈是真的牛逼啊。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-08T11:16:11.689Z">
+<meta property="og:updated_time" content="2019-08-08T11:16:54.119Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="题解 P1565 【牛宫】">
-<meta name="twitter:description" content="这是一名蒟蒻在考场上自己想出来的题解！和下面的大佬的思路都不一样的题解！我的解法 O(n * n * n * logn),下面那些单调栈是真的牛逼啊。 其实是我把这一题想难了，看下面的O(n * n * n * logn)的解法思路比我简单多了，我这里只是提供一个 与众不同 的解法。 我这个算法是基于暴力优化而来的 首先对于二维的子矩阵问题（比如最大子矩阵），一个常规的思路就是枚举左右区间，然后按">
+<meta name="twitter:description" content="这是一名蒟蒻在考场上自己想出来的题解！和下面的大佬的思路都不一样的题解！我的解法 O(n * n * n * logn),下面那些单调栈是真的牛逼啊。">
   
     <link rel="alternative" href="/atom.xml" title="ChenHacker&#39;s Blog" type="application/atom+xml">
   
@@ -179,6 +179,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="这是一名蒟蒻在考场上自己想出来的题解！和下面的大佬的思路都不一样的题解！"><a href="#这是一名蒟蒻在考场上自己想出来的题解！和下面的大佬的思路都不一样的题解！" class="headerlink" title="这是一名蒟蒻在考场上自己想出来的题解！和下面的大佬的思路都不一样的题解！"></a>这是一名蒟蒻在考场上自己想出来的题解！和下面的大佬的思路都不一样的题解！</h3><p>我的解法 O(n * n * n * logn),下面那些单调栈是真的牛逼啊。</p>
+<a id="more"></a>
+
 <p>其实是我把这一题想难了，看下面的O(n * n * n * logn)的解法思路比我简单多了，我这里只是提供一个 <strong><em>与众不同</em></strong> 的解法。</p>
 <p>我这个算法是基于暴力优化而来的</p>
 <p>首先对于二维的子矩阵问题（比如<a href="http://noi.openjudge.cn/ch0206/1768/" target="_blank" rel="noopener">最大子矩阵</a>），一个常规的思路就是枚举左右区间，然后按照一维的算法来搞</p>
