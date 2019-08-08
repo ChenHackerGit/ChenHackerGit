@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://ch66.cf">
-  <title>Archives | ChenHacker&#39;s Blog</title>
+  <title>题解 P1565 【牛宫】 | ChenHacker&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="ChenHacker&#39;s Blog">
-<meta property="og:url" content="http://ch66.cf/archives/index.html">
+  <meta name="description" content="这是一名蒟蒻在考场上自己想出来的题解！和下面的大佬的思路都不一样的题解！我的解法 O(n * n * n * logn),下面那些单调栈是真的牛逼啊。 其实是我把这一题想难了，看下面的O(n * n * n * logn)的解法思路比我简单多了，我这里只是提供一个 与众不同 的解法。 我这个算法是基于暴力优化而来的 首先对于二维的子矩阵问题（比如最大子矩阵），一个常规的思路就是枚举左右区间，然后按">
+<meta name="keywords" content="题解，二分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="题解 P1565 【牛宫】">
+<meta property="og:url" content="http://ch66.cf/2019/08/08/题解-P1565-【牛宫】/index.html">
 <meta property="og:site_name" content="ChenHacker&#39;s Blog">
+<meta property="og:description" content="这是一名蒟蒻在考场上自己想出来的题解！和下面的大佬的思路都不一样的题解！我的解法 O(n * n * n * logn),下面那些单调栈是真的牛逼啊。 其实是我把这一题想难了，看下面的O(n * n * n * logn)的解法思路比我简单多了，我这里只是提供一个 与众不同 的解法。 我这个算法是基于暴力优化而来的 首先对于二维的子矩阵问题（比如最大子矩阵），一个常规的思路就是枚举左右区间，然后按">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-08T11:16:11.689Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ChenHacker&#39;s Blog">
+<meta name="twitter:title" content="题解 P1565 【牛宫】">
+<meta name="twitter:description" content="这是一名蒟蒻在考场上自己想出来的题解！和下面的大佬的思路都不一样的题解！我的解法 O(n * n * n * logn),下面那些单调栈是真的牛逼啊。 其实是我把这一题想难了，看下面的O(n * n * n * logn)的解法思路比我简单多了，我这里只是提供一个 与众不同 的解法。 我这个算法是基于暴力优化而来的 首先对于二维的子矩阵问题（比如最大子矩阵），一个常规的思路就是枚举左右区间，然后按">
   
     <link rel="alternative" href="/atom.xml" title="ChenHacker&#39;s Blog" type="application/atom+xml">
   
@@ -146,38 +151,76 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-题解-P1565-【牛宫】" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      题解 P1565 【牛宫】
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
+
+        
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 <a href="/2019/08/08/题解-P1565-【牛宫】/" class="archive-article-date">
   	<time datetime="2019-08-08T11:14:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-08</time>
 </a>
 
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/08/题解-P1565-【牛宫】/">题解 P1565 【牛宫】</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="这是一名蒟蒻在考场上自己想出来的题解！和下面的大佬的思路都不一样的题解！"><a href="#这是一名蒟蒻在考场上自己想出来的题解！和下面的大佬的思路都不一样的题解！" class="headerlink" title="这是一名蒟蒻在考场上自己想出来的题解！和下面的大佬的思路都不一样的题解！"></a>这是一名蒟蒻在考场上自己想出来的题解！和下面的大佬的思路都不一样的题解！</h3><p>我的解法 O(n * n * n * logn),下面那些单调栈是真的牛逼啊。</p>
+<p>其实是我把这一题想难了，看下面的O(n * n * n * logn)的解法思路比我简单多了，我这里只是提供一个 <strong><em>与众不同</em></strong> 的解法。</p>
+<p>我这个算法是基于暴力优化而来的</p>
+<p>首先对于二维的子矩阵问题（比如<a href="http://noi.openjudge.cn/ch0206/1768/" target="_blank" rel="noopener">最大子矩阵</a>），一个常规的思路就是枚举左右区间，然后按照一维的算法来搞</p>
+<h4 id="所以我这里只要讲一维的解法就好了（斜眼笑）"><a href="#所以我这里只要讲一维的解法就好了（斜眼笑）" class="headerlink" title="所以我这里只要讲一维的解法就好了（斜眼笑）"></a>所以我这里只要讲一维的解法就好了（斜眼笑）</h4><h4 id="谈谈一维的n-2暴力算法"><a href="#谈谈一维的n-2暴力算法" class="headerlink" title="谈谈一维的n^2暴力算法"></a>谈谈一维的n^2暴力算法</h4><p>先枚举左端点，然后枚举右端点，然后前缀和O(1)算出sum[l, r]的值如果大于零就跟新ans就好了</p>
+<p>然后我这时想到一个馊主意：</p>
+<blockquote>
+<p>对于每一个l，必然有k个r使它可以更新ans，是不是把前缀和sort一下就可以二分了？</p>
+</blockquote>
+<p>然后我很快否定了这个想法，因为就算找到了k个r，我还是得一个一个去更新答案啊。</p>
+<h4 id="于是我又想到了前缀最大值，哈哈哈然后这一题就被我A掉了"><a href="#于是我又想到了前缀最大值，哈哈哈然后这一题就被我A掉了" class="headerlink" title="于是我又想到了前缀最大值，哈哈哈然后这一题就被我A掉了"></a>于是我又想到了前缀最大值，哈哈哈然后这一题就被我A掉了</h4><p>下面是代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">#define max(a,b) (a&gt;b?a:b)</span><br><span class="line">#define min(a,b) (a&lt;b?a:b)</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">long long read() &#123;</span><br><span class="line">	register long long x=1,ans=0;register char ch=getchar();</span><br><span class="line">	while(ch&lt;&apos;0&apos;||ch&gt;&apos;9&apos;) &#123;if(ch==&apos;-&apos;) x*=-1;ch=getchar();&#125;</span><br><span class="line">	while(ch&gt;=&apos;0&apos;&amp;&amp;ch&lt;=&apos;9&apos;)&#123;ans=(ans&lt;&lt;3)+(ans&lt;&lt;1)+ch-48;ch=getchar();&#125;</span><br><span class="line">	return x*ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const int N=205;</span><br><span class="line">long long n,m,a[N][N],ans;</span><br><span class="line">long long S[N][N];</span><br><span class="line"></span><br><span class="line">struct Node &#123;</span><br><span class="line">	int id;</span><br><span class="line">	long long d;</span><br><span class="line">&#125;sum[N];</span><br><span class="line">int maxn[N];</span><br><span class="line">bool cmp(Node x,Node y) &#123;</span><br><span class="line">	if(x.d==y.d) return x.id&lt;y.id;</span><br><span class="line">	return x.d&lt;y.d;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int find(long long x) &#123;</span><br><span class="line">	int l=1,r=n,res=0,mid;</span><br><span class="line">	while(l&lt;=r) &#123;</span><br><span class="line">		mid=(l+r)&gt;&gt;1;</span><br><span class="line">		if(sum[mid].d-x&gt;0) res=max(res,maxn[mid]),r=mid-1;</span><br><span class="line">		else l=mid+1;</span><br><span class="line">	&#125;</span><br><span class="line">	return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	n=read(); m=read();</span><br><span class="line">	for(register int i=1;i&lt;=n;++i) &#123;</span><br><span class="line">		for(register int j=1;j&lt;=m;++j) &#123;</span><br><span class="line">			a[i][j]=read(); S[i][j]=S[i][j-1]+a[i][j];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	for(register int l=1;l&lt;=m;++l) &#123;</span><br><span class="line">		for(register int r=l;r&lt;=m;++r) &#123;</span><br><span class="line">			memset(sum,0,sizeof(sum)); memset(maxn,0,sizeof(maxn));</span><br><span class="line">			for(register int i=1;i&lt;=n;++i) &#123; sum[i].d=sum[i-1].d+S[i][r]-S[i][l-1]; sum[i].id=i; &#125;</span><br><span class="line">			sort(sum+1,sum+n+1,cmp);</span><br><span class="line">			for(register int i=n;i&gt;=1;--i) maxn[i]=max(maxn[i+1],sum[i].id);</span><br><span class="line">			long long t=0;</span><br><span class="line">			for(register int i=1;i&lt;=n;++i) &#123;</span><br><span class="line">				int tmp=find(t);</span><br><span class="line">				if(tmp!=0) &#123;</span><br><span class="line">					tmp=tmp-i+1; tmp*=r-l+1;</span><br><span class="line">					ans=max(tmp,ans);</span><br><span class="line">				&#125;</span><br><span class="line">				t+=S[i][r]-S[i][l-1];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;%lld\n&quot;,ans);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
+<p>蒟蒻写题解不易，顺手点赞，感激不尽。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -189,299 +232,129 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://ch66.cf/2019/08/08/题解-P1565-【牛宫】/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/07/31/使用natfrp映射ssh服务-and-使用shell脚本实现：开机自启、掉线重连功能/" class="archive-article-date">
-  	<time datetime="2019-07-31T04:14:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-31</time>
-</a>
 
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2019/07/31/使用natfrp映射ssh服务-and-使用shell脚本实现：开机自启、掉线重连功能/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用natfrp映射ssh服务 and 使用shell脚本实现：开机自启、掉线重连功能</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/31/使用natfrp映射ssh服务-and-使用shell脚本实现：开机自启、掉线重连功能/">使用natfrp映射ssh服务 and 使用shell脚本实现：开机自启、掉线重连功能</a>
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">natfrp</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ssh</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">端口映射</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">shell</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">服务器</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/07/31/在Chrome中与Flash说再见/" class="archive-article-date">
-  	<time datetime="2019-07-31T04:00:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-31</time>
-</a>
+  <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC80NTYyNi8yMjEzNw==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
 
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/31/在Chrome中与Flash说再见/">在Chrome中与Flash说再见</a>
-    </h1>
+  <!--     if (typeof LivereTower === 'function') { return; } -->
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">chrome</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">flash</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/07/28/转-为Hexo主题yilia添加livere-来必力-评论支持/" class="archive-article-date">
-  	<time datetime="2019-07-28T03:09:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-28</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/28/转-为Hexo主题yilia添加livere-来必力-评论支持/">[转]为Hexo主题yilia添加livere(来必力)评论支持</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">转载</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">livere</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/07/28/免费端口映射推荐-www-natfrp-org/" class="archive-article-date">
-  	<time datetime="2019-07-27T16:18:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-28</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/28/免费端口映射推荐-www-natfrp-org/">免费端口映射推荐-www.natfrp.org</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">端口映射</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">软件推荐</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/07/28/github-hexo-404-解决方法/" class="archive-article-date">
-  	<time datetime="2019-07-27T16:00:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-28</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/28/github-hexo-404-解决方法/">github hexo 404 解决方法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">github</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/07/27/关于我的新博客/" class="archive-article-date">
-  	<time datetime="2019-07-27T06:36:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-27</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/27/关于我的新博客/">关于我的新博客</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">公告</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -516,8 +389,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
