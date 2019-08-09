@@ -8,15 +8,18 @@
   <link rel="dns-prefetch" href="http://ch66.cf">
   <title>在deepin发行版上安装KDE Connect | ChenHacker&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="li">
+  <meta name="description" content="以前一直想在deepin上安装kde connect,终于自己琢磨出一个方法去安装。闲话少叙，我们直接进入正题：">
+<meta name="keywords" content="linux,deepin,kde">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在deepin发行版上安装KDE Connect">
 <meta property="og:url" content="http://ch66.cf/2019/08/09/在deepin发行版上安装KDE-Connect/index.html">
 <meta property="og:site_name" content="ChenHacker&#39;s Blog">
+<meta property="og:description" content="以前一直想在deepin上安装kde connect,终于自己琢磨出一个方法去安装。闲话少叙，我们直接进入正题：">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-09T10:46:00.290Z">
+<meta property="og:updated_time" content="2019-08-09T10:49:12.301Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在deepin发行版上安装KDE Connect">
+<meta name="twitter:description" content="以前一直想在deepin上安装kde connect,终于自己琢磨出一个方法去安装。闲话少叙，我们直接进入正题：">
   
     <link rel="alternative" href="/atom.xml" title="ChenHacker&#39;s Blog" type="application/atom+xml">
   
@@ -175,7 +178,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>以前一直想在deepin上安装kde connect,终于自己琢磨出一个方法去安装。闲话少叙，我们直接进入正题：</p>
+<a id="more"></a>
+
+<p>第一步：伪装成ubuntu<br>修改 /etc/lsb-release文件为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">DISTRIB_ID=Ubuntu</span><br><span class="line">DISTRIB_RELEASE=15.10</span><br><span class="line">DISTRIB_CODENAME=wily</span><br><span class="line">DISTRIB-DESCRIPTION=&quot;Ubuntu wily&quot;</span><br></pre></td></tr></table></figure>
+
+<p>第二步：安装PPA<br>由于我们伪装的版本是15.10，所以我们选择相应版本的PPA</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/apt/sources.list</span><br><span class="line"></span><br><span class="line">deb http://ppa.launchpad.net/vikoadi/ppa/ubuntu wily main </span><br><span class="line">deb-src http://ppa.launchpad.net/vikoadi/ppa/ubuntu wily main</span><br></pre></td></tr></table></figure>
+
+<p>然后我们使PPA生效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:vikoadi/ppa</span><br><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<p>第三步：安装KDE Connect</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install kdeconnect indicator-kdeconnect</span><br></pre></td></tr></table></figure>
+
+<h1 id="搞定"><a href="#搞定" class="headerlink" title="搞定!"></a>搞定!</h1>
       
 
       
@@ -209,7 +227,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">li</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">deepin</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">kde</a>
         		</li>
       		
 		</ul>
@@ -507,6 +533,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">二分</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">deepin</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">kde</a>
               </li>
             
             <div class="clearfix"></div>
